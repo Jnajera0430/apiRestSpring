@@ -9,12 +9,13 @@ public class UserModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
-    private long id;
+    private Long id;
     private String name;
     private String documentType;
     private Integer identity;
     private Integer edad;
     private Integer priority;
+    private boolean state;
 
     public long getId() {
         return id;
@@ -63,5 +64,23 @@ public class UserModel {
     public void setPriority(Integer priority) {
         this.priority = priority;
     }
+    public boolean getState(){
+        return state;
+    }
 
+    public void setState(boolean state){
+        this.state = state;
+    }
+
+    public void deleteUser(){
+        setState(false);
+    }
+
+    public void updateUser(UserModel user){
+        setName(user.getName());
+        setDocumentType(user.getDocumentType());
+        setIdentity(user.getIdentity());
+        setEdad(user.getEdad());
+        setPriority(user.getPriority());
+    }
 }
