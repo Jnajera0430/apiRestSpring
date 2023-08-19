@@ -43,7 +43,7 @@ public class UserController {
         return this.userService.getByName(name);
     }
 
-    @PatchMapping("/edit")
+    @PatchMapping()
     public UserModel editUser(@RequestBody UserModel user) {
         return this.userService.updateUser(user);
     }
