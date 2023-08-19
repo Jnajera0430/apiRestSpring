@@ -39,7 +39,7 @@ public class UserService {
          */
     }
 
-    public UserModel deleteUser(Long id) {
+    public Boolean deleteUser(Long id) {
         Optional<UserModel> optionalUser = userRepository.findById(id);
 
         if (optionalUser.isEmpty()) {
@@ -51,7 +51,7 @@ public class UserService {
         // change state
         foundUser.deleteUser();
         userRepository.save(foundUser);
-        return foundUser;
+        return true;
         /*
          * UserModel foundUser = this.userRepository.findById(id)
          * .orElseThrow(UserNotFoundException::new);
@@ -71,5 +71,9 @@ public class UserService {
         UserModel foundUser = optionalUser.get();
         foundUser.updateUser(user);
         return this.userRepository.save(foundUser);
+    }
+
+    public ArrayList<UserModel> getByName(String name){
+        return userRepository.findByName(name);
     }
 }
